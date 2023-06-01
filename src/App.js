@@ -1,24 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import './App.css'
+import ResultBox from "./components/ResultBox";
 
 function App() {
+  const [bgColor, setBgColor ] = useState('rgb(220,220,220)');
+
+  const colorHandler = () => {
+    const randomBetween = (min, max) => min + Math.floor(Math.random() * (max - min + 1));
+    const r = randomBetween(0, 255),
+        g = randomBetween(0, 255),
+        b = randomBetween(0, 255),
+        rgb = `rgb(${r},${g},${b})`;
+    setBgColor(rgb);
+  }
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <h1>Random Color Picker</h1>
+      <ResultBox bgColor={ bgColor} colorHandler={ colorHandler } />
+    </>
   );
 }
 
